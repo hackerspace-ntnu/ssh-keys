@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dingseboms
     steps:
-      - uses: .github/actions/update-keys@main
+      - uses: ./.github/actions/update-keys@main
         with:
           username: dingseboms
           host: ${{ secrets.ssh_host }}
