@@ -1,0 +1,18 @@
+name: Update all keys
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  update-dingseboms:
+    runs-on: ubuntu-latest
+    environment: dingseboms
+    steps:
+      - uses: hackerspace-ntnu/ssh-keys/.github/actions/update-keys.yaml@main
+        with:
+          username: dingseboms
+          host: ${{ secrets.ssh_host }}
+          port: ${{ secrets.ssh_port }}
+          key: ${{ secrets.ssh_key }}
