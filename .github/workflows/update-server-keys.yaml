@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dingseboms
     steps:
+      - uses: actions/checkout
       - uses: hackerspace-ntnu/ssh-keys/.github/actions/update-keys.yaml@main
         with:
           username: dingseboms
