@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 if [[ -z $SSH_KEY_REPO ]]; then
     echo "no SSH key repository URL was specified"
@@ -28,27 +28,5 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
-# create a new authorized_keys file from scratch
-touch $TMP_DIR/authorized_keys
-echo "### THIS FILE IS AUTOMATICALLY UPDATED! Do not change manually, your changes will be overwritten. ###" >> $TMP_DIR/authorized_keys
-echo "### Add your public keys to this repo instead: ${SSH_KEY_REPO} ###" >> $TMP_DIR/authorized_keys
-echo "" >> $TMP_DIR/authorized_keys
-
-# allow for specifying a local authorized_keys file in the environment that should be included alongside the keys in the repository
-# can be used to ensure that script errors do not cause you to lose SSH access
-if [[ -e $LOCAL_SSH_KEYS ]]; then
-    echo "### Local keyfile start ###" >> $TMP_DIR/authorized_keys
-    cat $LOCAL_SSH_KEYS >> $TMP_DIR/authorized_keys
-    echo "### Local keyfile end ###" >> $TMP_DIR/authorized_keys
-    echo "" >> $TMP_DIR/authorized_keys
-fi
-
-for f in $(find ${TMP_DIR} -type f -name "*.pub"); do
-    echo "# $(basename $f)" >> $TMP_DIR/authorized_keys
-    cat $f >> $TMP_DIR/authorized_keys
-    echo "" >> $TMP_DIR/authorized_keys
-done
-
-# copy over the new authorized_keys file
-cp $TMP_DIR/authorized_keys $HOME/.ssh/authorized_keys
-chmod 644 $HOME/.ssh/authorized_keys
+./update_ssh_keys.sh
+rm -r $TMP_DIR
