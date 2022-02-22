@@ -3,7 +3,7 @@ name: Update SSH keys
 on:
   workflow_call:
     inputs:
-      username:
+      environment:
         required: true
         type: string
     secrets:
@@ -13,24 +13,26 @@ on:
         required: true
       key:
         required: true
-      
+      username:
+        required: true
 
 env:
   SSH_KEY_REPO: https://github.com/hackerspace-ntnu/ssh-keys.git
-  LOCAL_SSH_KEYS: ~/.ssh/local_authorized_keys
 
 jobs:
   update-keys:
     name: Update SSH keys
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.host }}
           port: ${{ secrets.port }}
           key: ${{ secrets.key }}
-          username: ${{ inputs.username }}
+          username: ${{ secrets.username }}
           script: |
             git clone $SSH_KEY_REPO /tmp/ssh-keys
-            . /tmp/ssh-keys/update_ssh_keys.sh
+            cd /tmp/ssh-keys
+            ./update_ssh_keys.sh
             rm -r /tmp/ssh-keys
