@@ -18,6 +18,7 @@ on:
 
 env:
   SSH_KEY_REPO: https://github.com/hackerspace-ntnu/ssh-keys.git
+  LOCAL_SSH_KEYS: ~/.ssh/local_authorized_keys
 
 jobs:
   update-keys:
@@ -32,7 +33,7 @@ jobs:
           key: ${{ secrets.key }}
           username: ${{ secrets.username }}
           script: |
-            git clone $SSH_KEY_REPO /tmp/ssh-keys
+            git clone ${{ env.SSH_KEY_REPO }} /tmp/ssh-keys
             cd /tmp/ssh-keys
-            ./update_ssh_keys.sh
+            LOCAL_SSH_KEYS=${{ env.LOCAL_SSH_KEYS }} ./update_ssh_keys.sh
             rm -r /tmp/ssh-keys
