@@ -15,7 +15,7 @@ if [[ -e $LOCAL_SSH_KEYS ]]; then
     echo "" >> authorized_keys.tmp
 fi
 
-for f in $(find . -type f -name "*.pub"); do
+for f in $(find $1 -type f -name "*.pub"); do
     echo "# $(basename $f)" >> authorized_keys.tmp
     cat $f >> authorized_keys.tmp
     echo "" >> authorized_keys.tmp
