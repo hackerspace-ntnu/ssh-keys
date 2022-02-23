@@ -6,18 +6,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-dingseboms:
-    name: Update authorized_keys on dingseboms
-    uses: ./.github/workflows/update-keys.yaml
-    with:
-      environment: dingseboms
-    # counter-intuitive workflow bug. see https://github.com/AllanOricil/workflow-template-bug/blob/master/.github/workflows/workflow-inplementation.yml
-    # this will correctly load environment secrets in the update-keys workflow
-    secrets:
-      host: ${{ secrets.ssh_host }}
-      port: ${{ secrets.ssh_port }}
-      key: ${{ secrets.ssh_key }}
-      username: ${{ secrets.username }}
+  # update-dingseboms:
+  #   name: Update authorized_keys on dingseboms
+  #   uses: ./.github/workflows/update-keys.yaml
+  #   with:
+  #     environment: dingseboms
+  #   # counter-intuitive workflow bug. see https://github.com/AllanOricil/workflow-template-bug/blob/master/.github/workflows/workflow-inplementation.yml
+  #   # this will correctly load environment secrets in the update-keys workflow
+  #   secrets:
+  #     host: ${{ secrets.ssh_host }}
+  #     port: ${{ secrets.ssh_port }}
+  #     key: ${{ secrets.ssh_key }}
+  #     username: ${{ secrets.username }}
   update-frukt:
     name: Update authorized_keys on frukt
     uses: ./.github/workflows/update-keys.yaml
