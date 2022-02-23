@@ -35,5 +35,5 @@ jobs:
           script: |
             git clone ${{ env.SSH_KEY_REPO }} /tmp/ssh-keys
             cd /tmp/ssh-keys
-            SSH_KEY_REPO=${{ env.SSH_KEY_REPO }} LOCAL_SSH_KEYS=${{ env.LOCAL_SSH_KEYS }} ./update_ssh_keys.sh
+            SSH_KEY_REPO=${{ env.SSH_KEY_REPO }} LOCAL_SSH_KEYS=${{ env.LOCAL_SSH_KEYS }} ./update_ssh_keys.sh /tmp/ssh-keys/keys
             rm -r /tmp/ssh-keys
