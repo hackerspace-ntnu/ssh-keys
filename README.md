@@ -9,7 +9,7 @@ Adding a new key will grant the key owner server access.
 
 1. Generate a new SSH key using your generator of choice (typically PuTTYgen or ssh-keygen)
    - If using PuTTYgen, ensure you export the keyfiles with the OpenSSH format
-2. Create a new branch, commit and push your **public** key file
+2. Create a new branch, commit and push your **public** key file in the `keys` folder
 
 Typically, a public key file looks something like the following:
 ```
