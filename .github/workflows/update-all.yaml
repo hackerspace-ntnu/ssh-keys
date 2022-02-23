@@ -1,4 +1,4 @@
-name: Update all SSH keys
+name: Update all keys
 
 on:
   push:
