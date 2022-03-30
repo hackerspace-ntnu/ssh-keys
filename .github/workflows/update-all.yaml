@@ -18,6 +18,16 @@ jobs:
       port: ${{ secrets.ssh_port }}
       key: ${{ secrets.ssh_key }}
       username: ${{ secrets.username }}
+  update-duppeditt:
+    name: Update authorized_keys on duppeditt
+    uses: ./.github/workflows/update-keys.yaml
+    with:
+      environment: duppeditt
+    secrets:
+      host: ${{ secrets.ssh_host }}
+      port: ${{ secrets.ssh_port }}
+      key: ${{ secrets.ssh_key }}
+      username: ${{ secrets.username }}
   update-frukt:
     name: Update authorized_keys on frukt
     uses: ./.github/workflows/update-keys.yaml
