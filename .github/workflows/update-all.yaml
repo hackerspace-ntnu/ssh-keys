@@ -38,11 +38,11 @@ jobs:
       port: ${{ secrets.ssh_port }}
       key: ${{ secrets.ssh_key }}
       username: ${{ secrets.username }}
-  update-pve:
-    name: Update authorized_keys on pve
+  update-phoenix:
+    name: Update authorized_keys on phoenix
     uses: ./.github/workflows/update-keys.yaml
     with:
-      environment: pve
+      environment: phoenix
     secrets:
       host: ${{ secrets.ssh_host }}
       port: ${{ secrets.ssh_port }}
