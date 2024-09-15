@@ -1,4 +1,4 @@
-name: Update keys for dingseboms
+name: dingseboms
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   run-keys-script:
-    name: Update authorized_keys on dingseboms
+    name: Update
     uses: ./.github/workflows/update-keys.yml
     with:
       environment: dingseboms

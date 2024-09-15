@@ -1,4 +1,4 @@
-name: Update keys for duppeditt
+name: duppeditt
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   run-keys-script:
-    name: Update authorized_keys on duppeditt
+    name: Update
     uses: ./.github/workflows/update-keys.yml
     with:
       environment: duppeditt

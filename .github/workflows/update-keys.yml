@@ -1,4 +1,4 @@
-name: Update SSH keys
+name: SSH keys script
 
 on:
   workflow_call:
@@ -21,7 +21,7 @@ env:
 
 jobs:
   update-keys:
-    name: Update SSH keys
+    name: authorized_keys
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
