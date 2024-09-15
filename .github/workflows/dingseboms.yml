@@ -1,0 +1,21 @@
+name: Update keys for dingseboms
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "keys/dingseboms/**"
+  workflow_dispatch:
+
+jobs:
+  run-keys-script:
+    name: Update authorized_keys on dingseboms
+    uses: ./.github/workflows/update-keys.yml
+    with:
+      environment: dingseboms
+    secrets:
+      host: ${{ secrets.ssh_host }}
+      port: ${{ secrets.ssh_port }}
+      key: ${{ secrets.ssh_key }}
+      username: ${{ secrets.username }}

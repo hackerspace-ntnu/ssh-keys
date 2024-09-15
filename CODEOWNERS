@@ -1,4 +1,4 @@
-# This file defines the DevOps and Ledelsen teams as code owners for all files
+# This file defines the DevOps teams as code owners for all files
 # Reviews from code owners are mandatory to merge pull requests to this repository
 # Essentially, this means DevOps and the organization leaders are the only ones who can manage authorized SSH keys on the servers
-* @hackerspace-ntnu/DevOps @hackerspace-ntnu/Ledelsen
+* @hackerspace-ntnu/DevOps
