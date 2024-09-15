@@ -18,7 +18,6 @@ on:
 
 env:
   SSH_KEY_REPO: https://github.com/hackerspace-ntnu/ssh-keys.git
-  LOCAL_SSH_KEYS: ~/.ssh/local_authorized_keys
 
 jobs:
   update-keys:
@@ -26,14 +25,24 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
-      - uses: appleboy/ssh-action@v0.1.4
+      - uses: appleboy/ssh-action@latest
         with:
           host: ${{ secrets.host }}
           port: ${{ secrets.port }}
           key: ${{ secrets.key }}
           username: ${{ secrets.username }}
           script: |
+            set -e
+            trap 'rm -rf /tmp/ssh-keys' EXIT
             git clone ${{ env.SSH_KEY_REPO }} /tmp/ssh-keys
             cd /tmp/ssh-keys
-            SSH_KEY_REPO=${{ env.SSH_KEY_REPO }} LOCAL_SSH_KEYS=${{ env.LOCAL_SSH_KEYS }} ./scripts/update_ssh_keys.sh /tmp/ssh-keys/keys
+            touch authorized_keys.tmp
+            echo "" >> authorized_keys.tmp
+            for f in $(find keys/${{ inputs.environment }} -type f -name "*.pub"); do
+              echo "# $(basename $f)" >> authorized_keys.tmp
+              cat $f >> authorized_keys.tmp
+              echo "" >> authorized_keys.tmp
+            done
+            cp authorized_keys.tmp $HOME/.ssh/authorized_keys
+            chmod 644 $HOME/.ssh/authorized_keys
             rm -r /tmp/ssh-keys

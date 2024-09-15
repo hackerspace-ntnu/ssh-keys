@@ -1,0 +1,21 @@
+name: Update keys for gluteus
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "keys/gluteus/**"
+  workflow_dispatch:
+
+jobs:
+  run-keys-script:
+    name: Update authorized_keys on gluteus
+    uses: ./.github/workflows/update-keys.yml
+    with:
+      environment: gluteus
+    secrets:
+      host: ${{ secrets.HOST }}
+      port: ${{ secrets.PORT }}
+      key: ${{ secrets.KEY }}
+      username: ${{ secrets.USERNAME }}

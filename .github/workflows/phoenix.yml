@@ -1,0 +1,21 @@
+name: Update keys for phoenix
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "keys/phoenix/**"
+  workflow_dispatch:
+
+jobs:
+  run-keys-script:
+    name: Update authorized_keys on phoenix
+    uses: ./.github/workflows/update-keys.yml
+    with:
+      environment: phoenix
+    secrets:
+      host: ${{ secrets.HOST }}
+      port: ${{ secrets.PORT }}
+      key: ${{ secrets.KEY }}
+      username: ${{ secrets.USERNAME }}

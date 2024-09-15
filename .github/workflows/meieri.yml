@@ -1,0 +1,21 @@
+name: Update keys for meieri
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "keys/meieri/**"
+  workflow_dispatch:
+
+jobs:
+  run-keys-script:
+    name: Update authorized_keys on meieri
+    uses: ./.github/workflows/update-keys.yml
+    with:
+      environment: meieri
+    secrets:
+      host: ${{ secrets.HOST }}
+      port: ${{ secrets.PORT }}
+      key: ${{ secrets.KEY }}
+      username: ${{ secrets.USERNAME }}
