@@ -1,4 +1,4 @@
-name: Update keys for meieri
+name: meieri
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   run-keys-script:
-    name: Update authorized_keys on meieri
+    name: Update
     uses: ./.github/workflows/update-keys.yml
     with:
       environment: meieri
