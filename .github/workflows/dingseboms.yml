@@ -9,8 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-keys-script:
-    name: Update
+  update:
     uses: ./.github/workflows/update-keys.yml
     with:
       environment: dingseboms
