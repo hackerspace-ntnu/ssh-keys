@@ -22,7 +22,7 @@ env:
 jobs:
   update-keys:
     name: authorized_keys
-    runs-on: ubuntu-latest
+    runs-on: meieri
     environment: ${{ inputs.environment }}
     steps:
       - uses: appleboy/ssh-action@v1.0.3
