@@ -1,0 +1,20 @@
+name: netrunner
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "keys/netrunner/**"
+  workflow_dispatch:
+
+jobs:
+  update:
+    uses: ./.github/workflows/update-keys.yml
+    with:
+      environment: netrunner
+    secrets:
+      host: ${{ secrets.HOST }}
+      port: ${{ secrets.PORT }}
+      key: ${{ secrets.KEY }}
+      username: ${{ secrets.USERNAME }}
